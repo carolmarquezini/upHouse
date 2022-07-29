@@ -39,7 +39,7 @@ const createUser = async (request, response) => {
 
   if (emailExists) {
     response.status(401).send({
-      "message": "Email já cadastrado"
+      "message": "E-mail já cadastrado!"
     })
   }
 
@@ -81,7 +81,7 @@ const updateUserById = async (request, response) => {
     const savedUser = await findUser.save()
 
     return response.status(200).send({
-      message: "Usuário atualizada com sucesso!",
+      message: "Usuário atualizado com sucesso!",
       savedUser
     })
 
@@ -97,7 +97,7 @@ const deleteUserById = async (request, response) => {
     await userFind.delete()
 
     return response.status(200).json({
-      mensagem: `Usuário '${userFind.name}' deletada com sucesso!`
+      mensagem: `Usuário deletado com sucesso!`
     })
 
   } catch (err) {

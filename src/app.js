@@ -15,9 +15,9 @@ app.use(express.json())
 
 app.get("/", (request, response) => {
     response.status(200).send({
-        title: "Reprograma -> TEMA - Projeto Final",
+        title: "Reprograma -> TEMA: Construção civil voltada ao público de baixa renda. - Projeto Final: upHouse",
         version: "1.0.0",
-        mensagem: "BREVE DESCRIÇÃO DO TEMA"
+        mensagem: "Construção civil voltada ao público de baixa renda."
         })
 } )
 

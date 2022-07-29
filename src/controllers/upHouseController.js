@@ -94,7 +94,7 @@ const deleteCategoryById = async (request, response) => {
     await userFind.delete()
 
     return response.status(200).json({
-      mensagem: `Solicitação do(a) usiária(o) '${userFind.name}' deletada com sucesso!`
+      mensagem: `Solicitação deletada com sucesso!`
     })
 
   } catch (err) {
