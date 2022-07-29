@@ -90,6 +90,7 @@ const updateUserById = async (request, response) => {
   }
 }
 
+
 const deleteUserById = async (request, response) => {
   try {
     const userFind = await UserSchema.findById(request.params.id)

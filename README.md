@@ -1,5 +1,5 @@
 # ![UP-HOUSE-STUDENT 05](https://user-images.githubusercontent.com/100984525/181139690-f83d76b9-fc85-4d70-b60c-e73f010e30ea.png)
-**UP HOUSE STUDENT** trata-se de uma API voltada à construção civil, cujo principal objeto será unir universidades e pessoas de baixa renda para 
+**UP HOUSE STUDENT** trata-se de uma API voltada à construção civil, cujo principal objetivo será unir universidades e pessoas de baixa renda para 
 solucionar pequenos problemas de obras residências.
 
 A principio, a ideia será que pessoas de baixa renda façam um cadastro na **API UP HOUSE STUDENT**, descreva o seu problema e por fim universidades 
@@ -35,7 +35,7 @@ pós-graduação e principalmente com a orientação de um docente.
 
 ---
 ## Problema
-Existem casos na graduação onde alunos não conseguem oportunidade de fazer estágio e finalizam a graduação apenas com o conhecimento teórico, o que acaba 
+Existem casos na graduação onde alunos não conseguem oportunidades de realizar estágios e finalizam a graduação apenas com o conhecimento teórico, o que acaba 
 gerando certa inseurança para entrar no mercado de trabalho.
 
 Em parelelo, aprendemos na graduação a importância de um profissional para orientar quanto as técnicas construtivas. Contudo, há uma resistência da 
@@ -47,43 +47,46 @@ fazendo por conta própria.
 ## Solução
 Acredita-se que unir as [dificuldades](#problema) pode ser enriquecedor para as partes envolvidas,
 visto que quando uma pessoa encontrar um problema na sua residência, a mesma poderá ser apresentada na **API UP HOUSE STUDENT** 
-para que estudantes tenham acesso e solucionem o assunto posto, juntamente com profissionais recem 
+para que universidades tenham acesso e seus alunos solucionem o assunto posto, juntamente com profissionais recém 
 formados (com registro no [CREA](https://www.creasp.org.br/)) e que estejam cursando alguma pós-graduação na área para auxiliar
 o discente da graduação com apoio do docente responsável pela disciplina e/ou projeto.
 
 ---
 ## Tema
-**UP HOUSE STUDENT** é uma API que coleta informações relacionados a problemas com obras residências de pessoas com baixa renda, para que universidades 
-tenham acesso e solucionem esses problemas.
+**UP HOUSE STUDENT** é uma API para área da construção civil voltada ao público de baixa renda.
 
 ---
 ## Arquitetura
 
-Esse projeto foi desenvolvido utilizando a aquitetura MVC, onde pode ser visto na pasta **[src](https://github.com/carolmarquezini/ProjetoFinal-upHouse/tree/main/src)**.
+Esse projeto foi desenvolvido utilizando a aquitetura MVC, onde pode ser visto na pasta **[src](https://github.com/carolmarquezini/upHouse/tree/main/src)**.
+
+
+![IntroducaoMVC02](https://user-images.githubusercontent.com/100984525/181695128-a4c3528b-ef2a-4693-be84-db12416f9d4d.jpg)
+
 
 ---
 ### Rotas
 
 **usuários:**
 
-| Método HTTP | Endpoint           | Descrição                                                   | 
-| ----------- | ------------------ | ------------------------------------------------------------|
-| GET         | `/all`             | Retorna todos os cadastrados                                |
-| GET         | `/userId/:id`      | Retorna usuário por Id                                      |
-| POST        | `/create `         | Cria um usuário                                             | 
-| POST        | `/login  `         | Autentica o usuário                                         | 
-| PATCH       | `/update/:id`      | Altera informações do usuário com base no ID                |
-| DELETE      | `/delete/:id`      | Remove o usuário com base no ID da criação                  |
+| Método HTTP | Endpoint             | Descrição                                                   | 
+| ----------- | ---------------------| ------------------------------------------------------------|
+| GET         | `/users/all`         | Retorna todos os cadastrados                                |
+| GET         | `/users/userId/:id`  | Retorna usuário por Id                                      |
+| POST        | `/users/create `     | Cria um usuário                                             | 
+| POST        | `/users/login  `     | Autentica o usuário                                         | 
+| PATCH       | `/users/update/:id`  | Altera informações do usuário com base no ID                |
+| DELETE      | `/users/delete/:id`  | Remove o usuário com base no ID da criação                  |
 
 ### solicitação de um problema:
 
-| Método HTTP | Endpoint           | Descrição                                                   | 
-| ----------- | ------------------ | ------------------------------------------------------------|
-| GET         | `/all`             | Retorna todas as solicitações cadastradas                   |
-| GET         | `/category`        | Retorna categoria com base no ID da criação                 |
-| POST        | `/create `         | Cria uma solicitação                                        | 
-| PATCH       | `/update/:id`      | Altera informações da solicitação com base no ID da criação |
-| DELETE      | `/delete/:id`      | Remove uma solicitação com base no ID da criação            |
+| Método HTTP | Endpoint              | Descrição                                                   | 
+| ----------- | ----------------------| ------------------------------------------------------------|
+| GET         | `/upHouse/all`        | Retorna todas as solicitações cadastradas                   |
+| GET         | `/upHouse/category`   | Retorna categoria com base no ID da criação                 |
+| POST        | `/upHouse/create`     | Cria uma solicitação                                        | 
+| PATCH       | `/upHouse/update/:id` | Altera informações da solicitação com base no ID da criação |
+| DELETE      | `/upHouse/delete/:id` | Remove uma solicitação com base no ID da criação            |
 
 
 
@@ -205,9 +208,22 @@ module.exports = mongoose.model("upHouse", upHouseSchema)
 
 ```
 
-
 ---
 ## Tecnologias
+
+### Dependências do Projeto
+
+- [Bcryptjs](https://www.npmjs.com/package/bcryptjs) - Bcryptjs auxilia criptografar senhas com hash;
+- [Cors](https://www.npmjs.com/package/cors) - Cors permite o compatilhamento de dados entre diferentes origens;
+- [Dotenv-safe](https://www.npmjs.com/package/dotenv-safes) - Serve para carregar as variáveis de ambiente de um arquivo ```.env```;
+- [Express](https://www.npmjs.com/package/express) - O framework para Node.js que fornece recursos mínimos para construção de servidores web;
+- [Jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) - Jsonwebtoken cria caracteres codificados e atraves dele o servidor que conhece o código consegue ler o conteudo do token por meio da autenticação.
+- [Mongoose](https://www.npmjs.com/package/mongoose) - Mongoose é uma biblioteca que gerencia e relaciona dados;
+
+### Dependências do Desenvolvimento
+- [Jest](https://www.npmjs.com/package/jest) - Jest é uma estrutura de test js, através dele é possível realizar os testes;
+- [Nodemon](https://www.npmjs.com/package/nodemon) - Nodemon ajuda no desenvolvimento de sistemas com o Node. js reiniciando automaticamente o servidor;
+- [Supertest](https://www.npmjs.com/package/jest) - SuperTest automatiza a realização dos testes.
 
 
 ---
@@ -221,7 +237,7 @@ module.exports = mongoose.model("upHouse", upHouseSchema)
   
 	$ git init
   
-	$ git clone https://github.com/carolmarquezini/ProjetoFinal-upHouse.git
+	$ git clone https://github.com/carolmarquezini/upHouse.git
     ``` 
     
 3. **npm install** - Escreva a seguinte linha para instalar as dependências utilizadas nesse projeto: 
@@ -237,9 +253,22 @@ module.exports = mongoose.model("upHouse", upHouseSchema)
 ---
 ## Implementações Futuras
 
+- Conexão direta entre solicitante e universidade;
+- Controle de fluxo da solicitação (não atendida, em andamento e concluida);
+- Teste unitário;
+- Autenticação de todas as rotas.
+
+
 --- 
 ## Autora
+
+<a href="https://www.linkedin.com/in/carolainemarquezini" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
+
+![FOTO](https://user-images.githubusercontent.com/100984525/181692435-1f6fd859-60cd-4541-b2ad-93b1b842da3a.jpeg)
+
 
 ---
 ## Referências
 
+- https://github.com/flutter/flutter
+- https://github.com/andreacf86/Projeto-Final-Trata-casinha
