@@ -13,30 +13,22 @@ const getAll = async (request, response) => {
   })
 }
 
-const getProblem = async (request, response) => {
-  const problem = request.get("problema")
-  const resultProblem = problem.split(" ")[1]
-
-  if (!resultProblem) {
-    return response.status(401).send("Erro no header")
-  }
-
+const getUserById = async (request, response) => {
   try {
-    const userFound = await UserSchema.findById(request.params.id)
-
-    await userFound.get()
+    const findById = await UserSchema.findById(request.params.id)
 
     return response.status(200).json({
-      mensagem: `Problema  da(o)'${userFound.name}' encontrado com sucesso!`
+      message: `Usuário ${findById.name} encontrado!`,
+      findById
     })
+
 
   } catch (err) {
-    return response.status(400).json({
-      mensagem: err.message
+    console.error(err);
+    response.status(500).json({
+      message: err.message
     })
   }
-  
-
 }
 
 const createUser = async (request, response) => {
@@ -66,10 +58,10 @@ const createUser = async (request, response) => {
       "message": "Usuário criado com sucesso",
       savedUser
     });
-  } catch (e) {
-    console.error(e);
-    response.status(500).json({
-      message: e.message
+  } catch (err) {
+    console.error(err);
+    return response.status(500).json({
+      message: err.message
     })
   }
 }
@@ -100,12 +92,12 @@ const updateUserById = async (request, response) => {
 
 const deleteUserById = async (request, response) => {
   try {
-    const userFound = await UserSchema.findById(request.params.id)
+    const userFind = await UserSchema.findById(request.params.id)
 
-    await userFound.delete()
+    await userFind.delete()
 
     return response.status(200).json({
-      mensagem: `Usuário '${userFound.name}' deletada com sucesso!`
+      mensagem: `Usuário '${userFind.name}' deletada com sucesso!`
     })
 
   } catch (err) {
@@ -115,10 +107,9 @@ const deleteUserById = async (request, response) => {
   }
 }
 
-
 module.exports = {
   getAll,
-  getProblem,
+  getUserById,
   createUser,
   updateUserById,
   deleteUserById

@@ -6,6 +6,7 @@ require("dotenv-safe").config()
 
 const db = require("./config/database")
 const userRoutes = require("./routes/userRoutes")
+const upHouseRoutes = require("./routes/upHouseRoutes")
 
 db.connect()
 
@@ -21,5 +22,6 @@ app.get("/", (request, response) => {
 } )
 
 app.use("/users", userRoutes)
+app.use("/upHouse",upHouseRoutes)
 
 module.exports = app

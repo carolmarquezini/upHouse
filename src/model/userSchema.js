@@ -6,27 +6,18 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-
     email: {
         type: String,
         required: true
     },
-
     telephone: {
         type: Number,
         required: true
     },
-
-    problem: {
-        type: String,
-        required: true        
-    },
-
     password: {
         type: String,
         required: true
     },
-
     createAt: {
         type: Date,
         default: new Date()
