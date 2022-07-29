@@ -9,23 +9,23 @@ const upHouseSchema = new mongoose.Schema({
     category: { 
         budget: {
             type: Boolean,
-            required: true
+            required: false
         },   
         topography: {
             type: Boolean,
-            required: true
+            required: false
         },         
         fundation: {
             type: Boolean,
-            required: true
+            required: false
         },
         electrical: {
             type: Boolean,
-            required: true
+            required: false
         },
         hydraulic: {
             type: Boolean,
-            required: true
+            required: false
         },
     },
     description: {

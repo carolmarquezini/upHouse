@@ -23,8 +23,9 @@ const getByCategory = async (request, response) => {
     try {
         const categoryFound = await UpHouseSchema.find({
             category
-        })
-        console.log(`Categoorias ${categoryFound}`)
+        }).populate("user") 
+
+        console.log(`Categorias ${categoryFound}`)
         
         return response.status(200).json({
             message: "Categoria localizada",
