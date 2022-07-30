@@ -17,9 +17,16 @@ const getUserById = async (request, response) => {
   try {
     const findById = await UserSchema.findById(request.params.id)
 
+    if(findById === null){
+      return response.status(404).json({
+        message: `Usuário não encontrado!`,
+        user: findById
+      })
+    }
+
     return response.status(200).json({
       message: `Usuário ${findById.name} encontrado!`,
-      findById
+      user: findById
     })
 
 

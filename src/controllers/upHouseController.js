@@ -21,13 +21,13 @@ const getByCategory = async (request, response) => {
   }
 
   try {
-    const categoryFound = await UpHouseSchema.find({
+    const upHouseFound = await UpHouseSchema.find({
       category
     }).populate("user")
 
     return response.status(200).json({
       message: "Categoria localizada",
-      categoryFound
+      categoryFound: upHouseFound
     })
 
   } catch (err) {
@@ -50,7 +50,7 @@ const createUpHouse = async (request, response) => {
     }
     body.user = body.userId
     const newUpHouse = new UpHouseSchema(body)
-    const savedUpHouse = await newUpHouse.save()
+    const savedUpHouse = await (await newUpHouse.save()).populate("user")
 
     response.status(201).send({
       "message": "Solicitação criada com sucesso",
@@ -72,7 +72,6 @@ const updateUpHouseById = async (request, response) => {
       findUpHouse.user = request.body.userId || findUpHouse.user
       findUpHouse.category = request.body.category || findUpHouse.category
       findUpHouse.description = request.body.description || findUpHouse.description
-
     }
 
     const savedUpHouse = await findUpHouse.save()
