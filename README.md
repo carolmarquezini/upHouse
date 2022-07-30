@@ -69,7 +69,7 @@ Para acessar essa aplicação utilizar o host: **[http://uphouse.herokuapp.com.b
 ---
 ## Rotas
 
-**Rota de usuários:**
+**Rotas de usuários:**
 
 | Método HTTP | Endpoint             | Descrição                                                   | 
 | ----------- | ---------------------| ------------------------------------------------------------|
@@ -80,130 +80,87 @@ Para acessar essa aplicação utilizar o host: **[http://uphouse.herokuapp.com.b
 | PATCH       | `/users/update/:id`  | Altera informações do usuário com base no ID                |
 | DELETE      | `/users/delete/:id`  | Remove o usuário com base no ID da criação                  |
 
-### solicitação de um problema:
+### Rotas de solicitação de um serviço feito pelo usuário:
 
 | Método HTTP | Endpoint              | Descrição                                                   | 
 | ----------- | ----------------------| ------------------------------------------------------------|
 | GET         | `/upHouse/all`        | Retorna todas as solicitações cadastradas                   |
-| GET         | `/upHouse/category`   | Retorna categoria com base no ID da criação                 |
+| GET         | `/upHouse/category`   | Retorna solicitações por categorias                         |
 | POST        | `/upHouse/create`     | Cria uma solicitação                                        | 
 | PATCH       | `/upHouse/update/:id` | Altera informações da solicitação com base no ID da criação |
 | DELETE      | `/upHouse/delete/:id` | Remove uma solicitação com base no ID da criação            |
 
-
-
 ---
 ## Modelos
 **Modelo de usuário**
+
+Informações para criar usuário: 
+
 ```jsx
-const mongoose = require("mongoose")
-
-const userSchema = new mongoose.Schema({
-    id: mongoose.Schema.Types.ObjectId,
-    name: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
-    },
-    telephone: {
-        type: Number,
-        required: true
-    },
-    password: {
-        type: String,
-        required: true
-    },
-    createAt: {
-        type: Date,
-        default: new Date()
-    },
-
-
-})
-
-module.exports = mongoose.model("user", userSchema)
+{
+    "name": "Carol Marquezini",
+    "email": "marquezini@email",
+    "telephone": 123456789,
+    "password": "12345"
+}
 ```
 
 **Retorno do modelo usuário:**
-```
-  {
-        "_id": "62e083ce60ad4e094f095786",
+```jsx
+{
+    "message": "Usuário criado com sucesso",
+    "savedUser": {
         "name": "Carol Marquezini",
-        "email": "marquezini.carol@email",
+        "email": "marquezini@email",
         "telephone": 123456789,
-        "password": "$2b$10$5lgvlewzhx7ZpWrvtanfLeoHLy1w13PejMYOxPe.lzCcmSeWc9JH.",
-        "createAt": "2022-07-27T00:14:15.229Z",
-        "__v": 0
+        "password": "$2b$10$41ktnCY4SKSM6GyfzKmo0.gWAm0Lj.otLjU6PNEJj10cw9Ty.JUe.",
+        "createAt": "2022-07-30T00:56:25.644Z",
+        "_id": "62e482fb38d566107904747b"
     }
-
+}
 ```
-
 
 **Modelo de solicitação**
 
+Informações para criar uma solicitação de serviço:
+
 ```jsx
-const mongoose = require("mongoose")
-
-const upHouseSchema = new mongoose.Schema({
-    id: mongoose.Schema.Types.ObjectId,
-    userId: {
-        type: String
+{
+    "userId": "62e482fb38d566107904747b",
+    "category": {
+        "budget": false,
+        "topography": false,
+        "fundation": false,
+        "electrical": true,
+        "hydraulic": false
     },
-    category: { 
-        budget: {
-            type: Boolean,
-            required: false
-        },   
-        topography: {
-            type: Boolean,
-            required: false
-        },         
-        fundation: {
-            type: Boolean,
-            required: false
-        },
-        electrical: {
-            type: Boolean,
-            required: false
-        },
-        hydraulic: {
-            type: Boolean,
-            required: false
-        },
-    },
-    description: {
-        type: String,
-        required: true
-    },
-    createAt: {
-        type: Date,
-        default: new Date()
-    },
-})
-
-module.exports = mongoose.model("upHouse", upHouseSchema)
+    "description": "Solicito auxilio com a parte elétrica de uma área da residência."
+}
 ```
 
 **Retorno do modelo da solicitação:**
-```
+```jsx
 {
     "message": "Solicitação criada com sucesso",
     "savedUpHouse": {
-        "userId": "62e0887b194e205684f23db8",
+        "user": {
+            "_id": "62e482fb38d566107904747b",
+            "name": "Carol Marquezini",
+            "email": "marquezini@email",
+            "telephone": 123456789,
+            "password": "$2b$10$41ktnCY4SKSM6GyfzKmo0.gWAm0Lj.otLjU6PNEJj10cw9Ty.JUe.",
+            "createAt": "2022-07-30T00:56:25.644Z"
+        },
         "category": {
-            "budget": true,
+            "budget": false,
             "topography": false,
             "fundation": false,
-            "electrical": false,
+            "electrical": true,
             "hydraulic": false
         },
-        "description": "Solicito um auxilio para realizar o orçamento de uma reforma que desejo fazer na minha casa.",
-        "createAt": "2022-07-27T22:57:06.497Z",
-        "_id": "62e1c3a609bb099e1af6563d",
-        "__v": 0
+        "description": "Solicito auxilio com a parte elétrica de uma área da residência.",
+        "createAt": "2022-07-30T02:38:41.660Z",
+        "_id": "62e49a38d0e8b497bb90a52b"
     }
 }
 
