@@ -68,6 +68,12 @@ const updateUpHouseById = async (request, response) => {
   try {
     const findUpHouse = await UpHouseSchema.findById(request.params.id)
 
+    if(findUpHouse === null){
+      return response.status(404).send({ 
+        message: `Solicitação não encontrada!`
+      })
+    }
+
     if (findUpHouse) {
       findUpHouse.user = request.body.userId || findUpHouse.user
       findUpHouse.category = request.body.category || findUpHouse.category
@@ -76,7 +82,7 @@ const updateUpHouseById = async (request, response) => {
 
     const savedUpHouse = await findUpHouse.save()
 
-    return response.status(200).send({
+    return response.status(200).send({ 
       message: `Solicitação com id: ${findUpHouse._id} e categoria ${findUpHouse.category} atualizada com sucesso!`,
       savedUpHouse: savedUpHouse
     })
