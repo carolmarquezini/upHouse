@@ -17,7 +17,7 @@ pós-graduação e principalmente com a orientação de um docente.
 - [Tema](#tema)
 - [Arquitetura](#arquitetura)
 - [Rotas](#rotas)
- - [Rota de usuário](#rota-de-usuário)
+ - [Rota de usuários](#rota-de-usuários)
  - [Rota de solicitação](#rota-de-solicitação)
 - [Modelos](#modelos)
   - [Modelo de usuário](#modelo-de-usuário)
@@ -31,7 +31,6 @@ pós-graduação e principalmente com a orientação de um docente.
 - [Implementações Futuras](#implementações-futuras)
 - [Autora](#autora)
 - [Referências](#referências)
-
 
 ---
 ## Problema
@@ -60,14 +59,17 @@ o discente da graduação com apoio do docente responsável pela disciplina e/ou
 
 Esse projeto foi desenvolvido utilizando a aquitetura MVC, onde pode ser visto na pasta **[src](https://github.com/carolmarquezini/upHouse/tree/main/src)**.
 
-
 ![IntroducaoMVC02](https://user-images.githubusercontent.com/100984525/181695128-a4c3528b-ef2a-4693-be84-db12416f9d4d.jpg)
 
+---
+## Heroku
+
+Para acessar essa aplicação utilizar o host: **[http://uphouse.herokuapp.com.br](http://uphouse.herokuapp.com.br)**
 
 ---
-### Rotas
+## Rotas
 
-**usuários:**
+**Rota de usuários:**
 
 | Método HTTP | Endpoint             | Descrição                                                   | 
 | ----------- | ---------------------| ------------------------------------------------------------|
@@ -185,7 +187,6 @@ const upHouseSchema = new mongoose.Schema({
 module.exports = mongoose.model("upHouse", upHouseSchema)
 ```
 
-
 **Retorno do modelo da solicitação:**
 ```
 {
@@ -217,8 +218,8 @@ module.exports = mongoose.model("upHouse", upHouseSchema)
 - [Cors](https://www.npmjs.com/package/cors) - Cors permite o compatilhamento de dados entre diferentes origens;
 - [Dotenv-safe](https://www.npmjs.com/package/dotenv-safes) - Serve para carregar as variáveis de ambiente de um arquivo ```.env```;
 - [Express](https://www.npmjs.com/package/express) - O framework para Node.js que fornece recursos mínimos para construção de servidores web;
-- [Jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) - Jsonwebtoken cria caracteres codificados e atraves dele o servidor que conhece o código consegue ler o conteudo do token por meio da autenticação.
-- [Mongoose](https://www.npmjs.com/package/mongoose) - Mongoose é uma biblioteca que gerencia e relaciona dados;
+- [Jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) - Jsonwebtoken cria caracteres codificados e atraves dele o servidor que conhece o código consegue ler o conteudo do token por meio da autenticação;
+- [Mongoose](https://www.npmjs.com/package/mongoose) - Mongoose é uma biblioteca que gerencia e relaciona dados.
 
 ### Dependências do Desenvolvimento
 - [Jest](https://www.npmjs.com/package/jest) - Jest é uma estrutura de test js, através dele é possível realizar os testes;
